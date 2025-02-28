@@ -1,0 +1,13 @@
+[project]
+name = "llama"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "datasets>=3.3.2",
+    "huggingface-hub>=0.29.1",
+    "numpy>=2.2.3",
+    "transformers>=4.49.0",
+    "wandb>=0.19.7",
+]

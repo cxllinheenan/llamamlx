@@ -1,5 +1,3 @@
-# train.py - LLaMA model implementation and training loop with MLX
-
 import math
 import time
 import os
@@ -8,6 +6,7 @@ import argparse
 import logging
 from functools import partial
 from typing import Optional, Tuple
+from pydantic_core.core_schema import float_schema
 import wandb
 import mlx.core as mx
 import mlx.nn as nn
@@ -423,11 +422,11 @@ def main(args):
                 # Log to wandb if enabled
                 if args.use_wandb:
                     wandb.log({
-                        "train/loss": train_loss,
-                        "train/learning_rate": optimizer.learning_rate,
-                        "train/tokens_per_sec": tokens_per_sec,
-                        "train/tokens_processed": train_dataloader.tokens_processed,
-                        "train/step": step_count
+                        "train/loss": float(train_loss),
+                        "train/learning_rate": float(optimizer.learning_rate),
+                        "train/tokens_per_sec": float(tokens_per_sec),
+                        "train/tokens_processed": int(train_dataloader.tokens_processed),
+                        "train/step": int(step_count)
                     })
                 
                 losses = []
@@ -447,9 +446,9 @@ def main(args):
                 # Log to wandb if enabled
                 if args.use_wandb:
                     wandb.log({
-                        "eval/loss": eval_loss,
-                        "eval/perplexity": eval_ppl,
-                        "eval/step": step_count
+                        "eval/loss": float(eval_loss),
+                        "eval/perplexity": float(eval_ppl),
+                        "eval/step": int(step_count)
                     })
                 
                 # Save checkpoint
@@ -488,10 +487,10 @@ def main(args):
     # Log final results to wandb if enabled
     if args.use_wandb:
         wandb.log({
-            "eval/final_loss": eval_loss,
-            "eval/final_perplexity": eval_ppl,
-            "train/total_steps": step_count,
-            "train/total_tokens": train_dataloader.tokens_processed
+            "eval/final_loss": float(eval_loss),
+            "eval/final_perplexity": float(eval_ppl),
+            "train/total_steps": int(step_count),
+            "train/total_tokens": int(train_dataloader.tokens_processed
         })
     
     # Save final model

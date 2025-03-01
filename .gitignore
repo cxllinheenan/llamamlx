@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
-
+llama_mlx_fineweb
 # Virtual environments
+wandb
 .venv

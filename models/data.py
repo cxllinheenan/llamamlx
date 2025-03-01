@@ -1,5 +1,3 @@
-# data.py - Data loading utilities for training with FineWeb dataset
-
 import logging
 from typing import Iterator, Tuple, Optional
 

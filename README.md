@@ -13,8 +13,8 @@ This repository contains an implementation of a LLaMA-style language model that 
 
 ## Requirements
 
-- macOS with Apple Silicon (M1/M2/M3)
-- Python 3.8+
+- macOS with Apple Silicon 
+- Python 3.11+
 - MLX
 - Hugging Face `datasets` and `transformers`
 - (Optional) Weights & Biases for experiment tracking
